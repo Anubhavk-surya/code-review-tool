@@ -72,6 +72,7 @@ dependencies {
     implementation("io.ktor:ktor-client-serialization:2.0.0")
     implementation("io.ktor:ktor-client-logging:2.0.0")
     implementation("io.ktor:ktor-client-cio:2.0.0")
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 
     testImplementation(kotlin("test"))
     testImplementation("io.ktor:ktor-server-test-host:2.3.7")

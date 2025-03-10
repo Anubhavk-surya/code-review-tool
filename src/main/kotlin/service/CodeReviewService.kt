@@ -5,27 +5,25 @@ import model.CodeReviewResponse
 import model.CodeSuggestion
 import utils.FileUtils
 
-import kotlinx.serialization.json.*
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import kotlinx.serialization.json.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class CodeReviewService(
     private val httpClient: HttpClient,
-    private val apiKey: String
+    private val apiKey: String,
+    private val baseUrl: String,
+    private val defaultModel: String,
 ) {
-    companion object {
-        private const val GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models/"
-    }
-
     suspend fun reviewCode(request: CodeReviewRequest): CodeReviewResponse {
         println("\n=== Code Review for ${request.fileName} ===")
         println("Reading file...")
         val code = FileUtils.readFile(request.fileName)
-        
+
         val prompt = """
             You are an experienced Kotlin developer conducting a thorough code review. Review the following ${request.language} code and provide comprehensive feedback.
             
@@ -101,15 +99,14 @@ class CodeReviewService(
             ```
         """.trimIndent()
 
-        println("Analyzing code with Gemini AI (${request.model})...")
-        val response = makeGeminiApiCall(prompt, request.model)
-        
+        val selectedModel = request.model
+        println("Analyzing code with Gemini AI ($selectedModel)...")
+        val response = makeGeminiApiCall(prompt, selectedModel)
+
         val (suggestions, updatedCode) = parseGeminiResponse(response)
-        
-        // Print detailed review summary
+
         printReviewSummary(request.fileName, suggestions)
-        
-        // Write the updated file with review comments at the bottom
+
         if (updatedCode != null) {
             println("\nWriting updated code to reviewed_${request.fileName}")
             val codeWithComments = appendReviewComments(updatedCode, suggestions)
@@ -123,19 +120,19 @@ class CodeReviewService(
         return CodeReviewResponse(
             fileName = request.fileName,
             suggestions = suggestions,
-            updatedCode = updatedCode ?: code // fallback to original code if no updates
+            updatedCode = updatedCode ?: code
         )
     }
 
     private fun printReviewSummary(fileName: String, suggestions: List<CodeSuggestion>) {
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-        
+
         println("\nCode Review Summary")
         println("==================")
         println("File: $fileName")
         println("Review Date: $timestamp")
         println("Number of suggestions: ${suggestions.size}")
-        
+
         if (suggestions.isEmpty()) {
             println("\nNo suggestions found - code looks good!")
             return
@@ -158,7 +155,7 @@ class CodeReviewService(
     private fun appendReviewComments(code: String, suggestions: List<CodeSuggestion>): String {
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         val reviewComments = StringBuilder(code)
-        
+
         reviewComments.append("\n\n")
         reviewComments.append("/*\n")
         reviewComments.append(" * =================================\n")
@@ -167,7 +164,7 @@ class CodeReviewService(
         reviewComments.append(" * Review Date: $timestamp\n")
         reviewComments.append(" * \n")
         reviewComments.append(" * Changes Suggested:\n")
-        
+
         suggestions.forEachIndexed { index, suggestion ->
             reviewComments.append(" * \n")
             reviewComments.append(" * ${index + 1}. Line ${suggestion.lineNumber}:\n")
@@ -175,18 +172,18 @@ class CodeReviewService(
             reviewComments.append(" *    Changed to: ${suggestion.suggestion}\n")
             reviewComments.append(" *    Reason: ${suggestion.explanation}\n")
         }
-        
+
         reviewComments.append(" * \n")
         reviewComments.append(" * End of Review Comments\n")
         reviewComments.append(" * =================================\n")
         reviewComments.append(" */")
-        
+
         return reviewComments.toString()
     }
 
     private suspend fun makeGeminiApiCall(prompt: String, model: String): String {
         try {
-            val response = httpClient.post("$GEMINI_BASE_URL$model:generateContent?key=$apiKey") {
+            val response = httpClient.post("$baseUrl$model:generateContent?key=$apiKey") {
                 contentType(ContentType.Application.Json)
                 setBody(buildJsonRequest(prompt))
             }
@@ -222,31 +219,38 @@ class CodeReviewService(
 
             val suggestions = mutableListOf<CodeSuggestion>()
             var updatedCode: String? = null
-            
+
             val sections = text.split("UPDATED_CODE:")
-            
+
             if (sections.isNotEmpty()) {
                 val suggestionText = sections[0]
                 val suggestionBlocks = suggestionText.split("---").filter { it.contains("Line:") }
-                
+
                 for (block in suggestionBlocks) {
                     val lines = block.trim().split("\n")
                     val suggestionMap = mutableMapOf<String, String>()
-                    
+
                     for (line in lines) {
                         when {
-                            line.startsWith("Line:") -> suggestionMap["lineNumber"] = line.substringAfter("Line:").trim()
-                            line.startsWith("Original:") -> suggestionMap["originalCode"] = line.substringAfter("Original:").trim()
-                            line.startsWith("Suggestion:") -> suggestionMap["suggestion"] = line.substringAfter("Suggestion:").trim()
-                            line.startsWith("Explanation:") -> suggestionMap["explanation"] = line.substringAfter("Explanation:").trim()
+                            line.startsWith("Line:") -> suggestionMap["lineNumber"] =
+                                line.substringAfter("Line:").trim()
+
+                            line.startsWith("Original:") -> suggestionMap["originalCode"] =
+                                line.substringAfter("Original:").trim()
+
+                            line.startsWith("Suggestion:") -> suggestionMap["suggestion"] =
+                                line.substringAfter("Suggestion:").trim()
+
+                            line.startsWith("Explanation:") -> suggestionMap["explanation"] =
+                                line.substringAfter("Explanation:").trim()
                         }
                     }
-                    
+
                     if (suggestionMap.size == 4) {
                         suggestions.add(createSuggestion(suggestionMap))
                     }
                 }
-                
+
                 if (sections.size > 1) {
                     updatedCode = sections[1].trim()
                         .removePrefix("```${sections[1].trim().takeWhile { !it.isWhitespace() }}")
@@ -255,7 +259,7 @@ class CodeReviewService(
                         .trim()
                 }
             }
-            
+
             return Pair(suggestions, updatedCode)
         } catch (e: Exception) {
             println("Error parsing Gemini response: ${e.message}")

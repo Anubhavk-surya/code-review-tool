@@ -30,9 +30,9 @@ tasks.withType<Copy> {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-//application {
-//    mainClass.set("com.suryadigital.training.application.ApplicationKt")
-//}
+application {
+    mainClass.set("com.suryadigital.training.application.ApplicationKt")
+}
 
 sourceSets {
     main {
@@ -65,6 +65,8 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.7")
     implementation("io.ktor:ktor-server-content-negotiation:2.3.7")
     implementation("io.insert-koin:koin-core:3.5.3")
+    implementation("io.insert-koin:koin-ktor:3.5.3")
+    implementation("io.insert-koin:koin-logger-slf4j:3.5.3")
     implementation("com.typesafe:config:1.4.2")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     implementation("io.ktor:ktor-client-core:2.0.0")

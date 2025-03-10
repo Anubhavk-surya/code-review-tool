@@ -5,11 +5,11 @@ import model.CodeReviewResponse
 import model.CodeSuggestion
 import utils.FileUtils
 
+import kotlinx.serialization.json.*
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import kotlinx.serialization.json.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -17,83 +17,62 @@ class CodeReviewService(
     private val httpClient: HttpClient,
     private val apiKey: String,
     private val baseUrl: String,
-    private val defaultModel: String,
+    private val defaultModel: String
 ) {
     suspend fun reviewCode(request: CodeReviewRequest): CodeReviewResponse {
         println("\n=== Code Review for ${request.fileName} ===")
         println("Reading file...")
         val code = FileUtils.readFile(request.fileName)
-
+        
         val prompt = """
-            You are an experienced Kotlin developer conducting a thorough code review. Review the following ${request.language} code and provide comprehensive feedback.
+            REVIEW AND ADD APPROPRIATE VISIBILITY MODIFIERS.
             
-            IMPORTANT: Every declaration (classes, properties, functions) MUST have an explicit visibility modifier (private, protected, internal, or public).
-            Default visibility is not acceptable - you must explicitly specify the most restrictive appropriate visibility modifier.
+            RULES:
+            1. Only add visibility modifiers when they provide meaningful encapsulation
+            2. Use 'private' ONLY for:
+               - Properties that contain sensitive data (API keys, credentials)
+               - Helper methods that are truly internal implementation details
+               - Methods that should never be called from outside the class
+            3. Use 'internal' ONLY for:
+               - Classes that are truly module-specific
+               - Components that should never be used outside the module
+            4. Use 'protected' ONLY for:
+               - Methods that are meant to be overridden in subclasses
+               - Properties that should be accessible in subclasses
+            5. Use 'public' (default) for:
+               - All public API methods and properties
+               - All interface methods
+               - All route handlers and endpoints
+               - All extension functions
+               - All top-level functions and properties
+               - All data classes and their properties
+               - All enum classes and their members
             
-            Focus on these key areas:
+            IMPORTANT:
+            - Do NOT add visibility modifiers to imports
+            - Do NOT add visibility modifiers to package declarations
+            - Do NOT add visibility modifiers to lambda expressions
+            - Do NOT add visibility modifiers to catch blocks
+            - Do NOT add visibility modifiers to route handlers
+            - Do NOT add visibility modifiers to properties that are part of a public API
             
-            1. Visibility and Access Control (HIGHEST PRIORITY):
-               - EVERY declaration MUST have an explicit visibility modifier
-               - Use private for anything only used within its containing class/file
-               - Use protected for members that should only be accessible in subclasses
-               - Use internal for declarations that should be visible only within the same module
-               - Use public only when the declaration needs to be visible everywhere
-               - No default visibility allowed - all declarations must be explicit
-            
-            2. Code Structure and Design:
-               - Consider if class is the right choice (would object be better for utility functions?)
-               - Function design (pure functions vs side effects)
-               - Unnecessary state (prefer stateless design)
-               - Parameter and return types
-               - Single Responsibility Principle
-               - Unnecessary code or redundancy
-            
-            3. Kotlin Best Practices:
-               - Immutability (using val over var)
-               - String templates instead of concatenation
-               - Single-expression functions where possible
-               - Meaningful parameter names (firstNumber, secondNumber instead of a, b)
-               - Proper companion object usage
-               - Use of const for compile-time constants
-               - Extension functions if beneficial
-            
-            4. API Design:
-               - Intuitive and consistent method names
-               - Clear parameter names
-               - Proper documentation
-               - Consistent return types
-               - Error handling strategy
-               - Interface segregation if needed
-            
-            5. Performance Considerations:
-               - Unnecessary object creation
-               - Proper scoping
-               - Efficient calculations
-               - Memory usage
+            Format:
             
             SUGGESTIONS:
-            For each suggestion, use exactly this format:
             ---
-            Line: <line_number>
-            Original: <original_code>
-            Suggestion: <suggested_code>
-            Explanation: <detailed explanation including:
-                        - The specific Kotlin best practice being applied
-                        - Why this change improves the code
-                        - Why this visibility modifier was chosen
-                        - Any additional considerations or alternatives>
+            Line: <number>
+            Original: class X {
+            Suggestion: internal class X {
+            Explanation: Added internal modifier as this class should only be accessible within the module
             ---
             
             UPDATED_CODE:
-            Provide the complete updated code incorporating all suggestions. The code MUST:
-            - Have explicit visibility modifiers on EVERY declaration (no default visibility allowed)
-            - Be idiomatic Kotlin
-            - Follow functional programming principles where appropriate
-            - Be well-structured and maintainable
-            - Follow all best practices
-            - Be ready for production use
+            ```kotlin
+            // Code with appropriate visibility modifiers
+            <code with visibility modifiers>
+            ```
             
-            Here's the code to review:
+            REVIEW THIS:
             ```${request.language.lowercase()}
             $code
             ```
@@ -102,11 +81,11 @@ class CodeReviewService(
         val selectedModel = request.model
         println("Analyzing code with Gemini AI ($selectedModel)...")
         val response = makeGeminiApiCall(prompt, selectedModel)
-
+        
         val (suggestions, updatedCode) = parseGeminiResponse(response)
-
+        
         printReviewSummary(request.fileName, suggestions)
-
+        
         if (updatedCode != null) {
             println("\nWriting updated code to reviewed_${request.fileName}")
             val codeWithComments = appendReviewComments(updatedCode, suggestions)
@@ -126,13 +105,13 @@ class CodeReviewService(
 
     private fun printReviewSummary(fileName: String, suggestions: List<CodeSuggestion>) {
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-
+        
         println("\nCode Review Summary")
         println("==================")
         println("File: $fileName")
         println("Review Date: $timestamp")
         println("Number of suggestions: ${suggestions.size}")
-
+        
         if (suggestions.isEmpty()) {
             println("\nNo suggestions found - code looks good!")
             return
@@ -155,7 +134,7 @@ class CodeReviewService(
     private fun appendReviewComments(code: String, suggestions: List<CodeSuggestion>): String {
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         val reviewComments = StringBuilder(code)
-
+        
         reviewComments.append("\n\n")
         reviewComments.append("/*\n")
         reviewComments.append(" * =================================\n")
@@ -164,7 +143,7 @@ class CodeReviewService(
         reviewComments.append(" * Review Date: $timestamp\n")
         reviewComments.append(" * \n")
         reviewComments.append(" * Changes Suggested:\n")
-
+        
         suggestions.forEachIndexed { index, suggestion ->
             reviewComments.append(" * \n")
             reviewComments.append(" * ${index + 1}. Line ${suggestion.lineNumber}:\n")
@@ -172,12 +151,12 @@ class CodeReviewService(
             reviewComments.append(" *    Changed to: ${suggestion.suggestion}\n")
             reviewComments.append(" *    Reason: ${suggestion.explanation}\n")
         }
-
+        
         reviewComments.append(" * \n")
         reviewComments.append(" * End of Review Comments\n")
         reviewComments.append(" * =================================\n")
         reviewComments.append(" */")
-
+        
         return reviewComments.toString()
     }
 
@@ -219,38 +198,31 @@ class CodeReviewService(
 
             val suggestions = mutableListOf<CodeSuggestion>()
             var updatedCode: String? = null
-
+            
             val sections = text.split("UPDATED_CODE:")
-
+            
             if (sections.isNotEmpty()) {
                 val suggestionText = sections[0]
                 val suggestionBlocks = suggestionText.split("---").filter { it.contains("Line:") }
-
+                
                 for (block in suggestionBlocks) {
                     val lines = block.trim().split("\n")
                     val suggestionMap = mutableMapOf<String, String>()
-
+                    
                     for (line in lines) {
                         when {
-                            line.startsWith("Line:") -> suggestionMap["lineNumber"] =
-                                line.substringAfter("Line:").trim()
-
-                            line.startsWith("Original:") -> suggestionMap["originalCode"] =
-                                line.substringAfter("Original:").trim()
-
-                            line.startsWith("Suggestion:") -> suggestionMap["suggestion"] =
-                                line.substringAfter("Suggestion:").trim()
-
-                            line.startsWith("Explanation:") -> suggestionMap["explanation"] =
-                                line.substringAfter("Explanation:").trim()
+                            line.startsWith("Line:") -> suggestionMap["lineNumber"] = line.substringAfter("Line:").trim()
+                            line.startsWith("Original:") -> suggestionMap["originalCode"] = line.substringAfter("Original:").trim()
+                            line.startsWith("Suggestion:") -> suggestionMap["suggestion"] = line.substringAfter("Suggestion:").trim()
+                            line.startsWith("Explanation:") -> suggestionMap["explanation"] = line.substringAfter("Explanation:").trim()
                         }
                     }
-
+                    
                     if (suggestionMap.size == 4) {
                         suggestions.add(createSuggestion(suggestionMap))
                     }
                 }
-
+                
                 if (sections.size > 1) {
                     updatedCode = sections[1].trim()
                         .removePrefix("```${sections[1].trim().takeWhile { !it.isWhitespace() }}")

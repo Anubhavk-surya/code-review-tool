@@ -19,10 +19,8 @@ object ConfigUtils {
         }
     }
 
-    fun getEnvVariable(key: String): String? {
-        // First try to get from system environment
+    private fun getEnvVariable(key: String): String? {
         return System.getenv(key)
-            // Then try to get from .env file
             ?: properties.getProperty(key)
     }
 

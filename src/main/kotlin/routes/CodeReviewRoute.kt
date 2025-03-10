@@ -9,8 +9,11 @@ import io.ktor.server.routing.post
 import io.ktor.server.request.receive
 import model.CodeReviewRequest
 import service.CodeReviewService
+import org.koin.ktor.ext.inject
 
-fun Route.codeReviewRoute(codeReviewService: CodeReviewService) {
+fun Route.codeReviewRoute() {
+    val codeReviewService: CodeReviewService by inject()
+    
     route("/api/review") {
         post {
             try {

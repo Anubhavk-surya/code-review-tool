@@ -6,7 +6,8 @@ import kotlinx.serialization.Serializable
 data class CodeReviewRequest(
     val fileName: String,
     val language: String = "Kotlin",
-    val code: String,
-    val model: String = "google/gemini-flash-2.0",
-    val task: String = "code review"
+    val model: String = "gemini-2.0-flash",
+    val task: String = "code review",
+    val includeInlineComments: Boolean = true,
+    val includeHeaderComments: Boolean = true
 )

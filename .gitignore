@@ -49,3 +49,6 @@ bin/
 
 # Keep env template
 !.env.template
+
+# Code review files
+reviewed_*

@@ -5,29 +5,73 @@ import model.CodeReviewResponse
 import model.CodeSuggestion
 import utils.FileUtils
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.*
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class CodeReviewService(
     private val httpClient: HttpClient,
     private val apiKey: String
 ) {
     companion object {
-        private const val GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key="
+        private const val GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models/"
     }
 
-    suspend fun reviewCode(fileName: String): CodeReviewResponse {
-        println("Reading file: $fileName")
-        val code = FileUtils.readFile(fileName)
-        println("File content length: ${code.length}")
+    suspend fun reviewCode(request: CodeReviewRequest): CodeReviewResponse {
+        println("\n=== Code Review for ${request.fileName} ===")
+        println("Reading file...")
+        val code = FileUtils.readFile(request.fileName)
         
         val prompt = """
-            You are a code reviewer. Review the following code and provide feedback in this exact format:
+            You are an experienced Kotlin developer conducting a thorough code review. Review the following ${request.language} code and provide comprehensive feedback.
+            
+            IMPORTANT: Every declaration (classes, properties, functions) MUST have an explicit visibility modifier (private, protected, internal, or public).
+            Default visibility is not acceptable - you must explicitly specify the most restrictive appropriate visibility modifier.
+            
+            Focus on these key areas:
+            
+            1. Visibility and Access Control (HIGHEST PRIORITY):
+               - EVERY declaration MUST have an explicit visibility modifier
+               - Use private for anything only used within its containing class/file
+               - Use protected for members that should only be accessible in subclasses
+               - Use internal for declarations that should be visible only within the same module
+               - Use public only when the declaration needs to be visible everywhere
+               - No default visibility allowed - all declarations must be explicit
+            
+            2. Code Structure and Design:
+               - Consider if class is the right choice (would object be better for utility functions?)
+               - Function design (pure functions vs side effects)
+               - Unnecessary state (prefer stateless design)
+               - Parameter and return types
+               - Single Responsibility Principle
+               - Unnecessary code or redundancy
+            
+            3. Kotlin Best Practices:
+               - Immutability (using val over var)
+               - String templates instead of concatenation
+               - Single-expression functions where possible
+               - Meaningful parameter names (firstNumber, secondNumber instead of a, b)
+               - Proper companion object usage
+               - Use of const for compile-time constants
+               - Extension functions if beneficial
+            
+            4. API Design:
+               - Intuitive and consistent method names
+               - Clear parameter names
+               - Proper documentation
+               - Consistent return types
+               - Error handling strategy
+               - Interface segregation if needed
+            
+            5. Performance Considerations:
+               - Unnecessary object creation
+               - Proper scoping
+               - Efficient calculations
+               - Memory usage
             
             SUGGESTIONS:
             For each suggestion, use exactly this format:
@@ -35,47 +79,114 @@ class CodeReviewService(
             Line: <line_number>
             Original: <original_code>
             Suggestion: <suggested_code>
-            Explanation: <explanation>
+            Explanation: <detailed explanation including:
+                        - The specific Kotlin best practice being applied
+                        - Why this change improves the code
+                        - Why this visibility modifier was chosen
+                        - Any additional considerations or alternatives>
             ---
             
             UPDATED_CODE:
-            <full_updated_code_with_all_changes>
+            Provide the complete updated code incorporating all suggestions. The code MUST:
+            - Have explicit visibility modifiers on EVERY declaration (no default visibility allowed)
+            - Be idiomatic Kotlin
+            - Follow functional programming principles where appropriate
+            - Be well-structured and maintainable
+            - Follow all best practices
+            - Be ready for production use
             
             Here's the code to review:
-            ```
+            ```${request.language.lowercase()}
             $code
             ```
         """.trimIndent()
 
-        println("Making API call to Gemini")
-        val response = makeGeminiApiCall(prompt)
+        println("Analyzing code with Gemini AI (${request.model})...")
+        val response = makeGeminiApiCall(prompt, request.model)
         
-        val (suggestions, updatedCode, metadata) = parseGeminiResponse(response)
-        println("Review completed:")
-        println("- Model version: ${metadata.modelVersion}")
-        println("- Prompt tokens: ${metadata.promptTokens}")
-        println("- Response tokens: ${metadata.responseTokens}")
-        println("- Total tokens: ${metadata.totalTokens}")
-        println("- Number of suggestions: ${suggestions.size}")
+        val (suggestions, updatedCode) = parseGeminiResponse(response)
         
-        // Write the updated file
+        // Print detailed review summary
+        printReviewSummary(request.fileName, suggestions)
+        
+        // Write the updated file with review comments at the bottom
         if (updatedCode != null) {
-            println("Writing updated code to file")
-            FileUtils.writeUpdatedFile(fileName, updatedCode)
+            println("\nWriting updated code to reviewed_${request.fileName}")
+            val codeWithComments = appendReviewComments(updatedCode, suggestions)
+            FileUtils.writeUpdatedFile(request.fileName, codeWithComments)
+            println("Review complete! You can find the updated code in 'reviewed_${request.fileName}'")
         } else {
-            println("No updated code received from Gemini")
+            println("\nNo code changes were suggested.")
         }
+        println("=====================================")
 
         return CodeReviewResponse(
-            fileName = fileName,
+            fileName = request.fileName,
             suggestions = suggestions,
             updatedCode = updatedCode ?: code // fallback to original code if no updates
         )
     }
 
-    private suspend fun makeGeminiApiCall(prompt: String): String {
+    private fun printReviewSummary(fileName: String, suggestions: List<CodeSuggestion>) {
+        val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+        
+        println("\nCode Review Summary")
+        println("==================")
+        println("File: $fileName")
+        println("Review Date: $timestamp")
+        println("Number of suggestions: ${suggestions.size}")
+        
+        if (suggestions.isEmpty()) {
+            println("\nNo suggestions found - code looks good!")
+            return
+        }
+
+        println("\nDetailed Suggestions:")
+        println("-------------------")
+        suggestions.forEachIndexed { index, suggestion ->
+            println("\n${index + 1}. Line ${suggestion.lineNumber}:")
+            println("   Original code:")
+            println("      ${suggestion.originalCode}")
+            println("   Suggested change:")
+            println("      ${suggestion.suggestion}")
+            println("   Explanation:")
+            println("      ${suggestion.explanation}")
+            println("   ----------------------------------------")
+        }
+    }
+
+    private fun appendReviewComments(code: String, suggestions: List<CodeSuggestion>): String {
+        val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+        val reviewComments = StringBuilder(code)
+        
+        reviewComments.append("\n\n")
+        reviewComments.append("/*\n")
+        reviewComments.append(" * =================================\n")
+        reviewComments.append(" * CODE REVIEW COMMENTS\n")
+        reviewComments.append(" * =================================\n")
+        reviewComments.append(" * Review Date: $timestamp\n")
+        reviewComments.append(" * \n")
+        reviewComments.append(" * Changes Suggested:\n")
+        
+        suggestions.forEachIndexed { index, suggestion ->
+            reviewComments.append(" * \n")
+            reviewComments.append(" * ${index + 1}. Line ${suggestion.lineNumber}:\n")
+            reviewComments.append(" *    Original: ${suggestion.originalCode}\n")
+            reviewComments.append(" *    Changed to: ${suggestion.suggestion}\n")
+            reviewComments.append(" *    Reason: ${suggestion.explanation}\n")
+        }
+        
+        reviewComments.append(" * \n")
+        reviewComments.append(" * End of Review Comments\n")
+        reviewComments.append(" * =================================\n")
+        reviewComments.append(" */")
+        
+        return reviewComments.toString()
+    }
+
+    private suspend fun makeGeminiApiCall(prompt: String, model: String): String {
         try {
-            val response = httpClient.post(GEMINI_API_URL + apiKey) {
+            val response = httpClient.post("$GEMINI_BASE_URL$model:generateContent?key=$apiKey") {
                 contentType(ContentType.Application.Json)
                 setBody(buildJsonRequest(prompt))
             }
@@ -101,28 +212,10 @@ class CodeReviewService(
         return request.toString()
     }
 
-    private data class GeminiMetadata(
-        val modelVersion: String,
-        val promptTokens: Int,
-        val responseTokens: Int,
-        val totalTokens: Int
-    )
-
-    private fun parseGeminiResponse(response: String): Triple<List<CodeSuggestion>, String?, GeminiMetadata> {
+    private fun parseGeminiResponse(response: String): Pair<List<CodeSuggestion>, String?> {
         try {
-            val jsonResponse = Json.parseToJsonElement(response).jsonObject
-            
-            // Extract metadata
-            val usageMetadata = jsonResponse["usageMetadata"]?.jsonObject
-            val metadata = GeminiMetadata(
-                modelVersion = jsonResponse["modelVersion"]?.jsonPrimitive?.content ?: "unknown",
-                promptTokens = usageMetadata?.get("promptTokenCount")?.jsonPrimitive?.int ?: 0,
-                responseTokens = usageMetadata?.get("candidatesTokenCount")?.jsonPrimitive?.int ?: 0,
-                totalTokens = usageMetadata?.get("totalTokenCount")?.jsonPrimitive?.int ?: 0
-            )
-
-            // Extract main content
-            val text = jsonResponse["candidates"]?.jsonArray?.firstOrNull()
+            val jsonResponse = Json.parseToJsonElement(response)
+            val text = jsonResponse.jsonObject["candidates"]?.jsonArray?.firstOrNull()
                 ?.jsonObject?.get("content")?.jsonObject?.get("parts")?.jsonArray?.firstOrNull()
                 ?.jsonObject?.get("text")?.jsonPrimitive?.content
                 ?: throw IllegalStateException("Invalid response format from Gemini API")
@@ -130,11 +223,9 @@ class CodeReviewService(
             val suggestions = mutableListOf<CodeSuggestion>()
             var updatedCode: String? = null
             
-            // Split response into suggestions and updated code sections
             val sections = text.split("UPDATED_CODE:")
             
             if (sections.isNotEmpty()) {
-                // Parse suggestions
                 val suggestionText = sections[0]
                 val suggestionBlocks = suggestionText.split("---").filter { it.contains("Line:") }
                 
@@ -156,16 +247,16 @@ class CodeReviewService(
                     }
                 }
                 
-                // Extract updated code
                 if (sections.size > 1) {
                     updatedCode = sections[1].trim()
-                        .removePrefix("```kotlin").removePrefix("```") // Remove code block markers and language tag
+                        .removePrefix("```${sections[1].trim().takeWhile { !it.isWhitespace() }}")
+                        .removePrefix("```")
                         .removeSuffix("```")
                         .trim()
                 }
             }
             
-            return Triple(suggestions, updatedCode, metadata)
+            return Pair(suggestions, updatedCode)
         } catch (e: Exception) {
             println("Error parsing Gemini response: ${e.message}")
             throw e

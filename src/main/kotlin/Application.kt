@@ -15,7 +15,7 @@ import di.appModule
 fun main() {
     val port = EnvUtils.getEnvVariable("PORT")?.toInt() ?: 8080
 
-    embeddedServer(Netty, port = port) {
+    embeddedServer(factory = Netty, port = port) {
         configureServer()
     }.start(wait = true)
 }
@@ -24,7 +24,7 @@ fun Application.configureServer() {
     install(ContentNegotiation) {
         json()
     }
-    
+
     install(Koin) {
         modules(appModule)
     }

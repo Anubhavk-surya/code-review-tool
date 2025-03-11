@@ -22,6 +22,7 @@ class GeminiApiClient(
                 contentType(ContentType.Application.Json)
                 setBody(buildJsonRequest(prompt))
             }
+
             return response.bodyAsText()
         } catch (e: Exception) {
             println("Error calling Gemini API: ${e.message}")
@@ -41,6 +42,7 @@ class GeminiApiClient(
                 }
             }
         }
+
         return request.toString()
     }
 } 

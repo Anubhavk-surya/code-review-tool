@@ -1,6 +1,5 @@
 package utils
 
-import io.github.cdimascio.dotenv.Dotenv
 import io.github.cdimascio.dotenv.dotenv
 
 object EnvUtils {

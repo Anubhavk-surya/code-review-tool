@@ -29,10 +29,10 @@ buildscript {
 tasks.withType<Copy> {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
-
-application {
-    mainClass.set("com.suryadigital.training.application.ApplicationKt")
-}
+//
+//application {
+//    mainClass.set("com.suryadigital.training.application.ApplicationKt")
+//}
 
 sourceSets {
     main {

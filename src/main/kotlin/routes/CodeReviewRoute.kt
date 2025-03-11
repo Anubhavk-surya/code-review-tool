@@ -12,7 +12,7 @@ import service.CodeReviewService
 import org.koin.ktor.ext.inject
 
 fun Route.codeReviewRoute() {
-    val codeReviewService: CodeReviewService by inject()
+    val codeReviewService by inject<CodeReviewService>()
     
     route("/api/review") {
         post {

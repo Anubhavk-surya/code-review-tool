@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class CodeReviewResponse(
-    val fileName: String,
+    val reviewedFilePath: String,
     val suggestions: List<CodeSuggestion>,
     val updatedCode: String
 )

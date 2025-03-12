@@ -8,6 +8,7 @@ import service.gemini.GeminiResponseParser
 import service.report.ReviewReporter
 import io.ktor.client.HttpClient
 import utils.LoggerUtils
+import java.io.File
 
 internal class CodeReviewService(
     httpClient: HttpClient,
@@ -19,8 +20,16 @@ internal class CodeReviewService(
 
     suspend fun reviewCode(request: CodeReviewRequest): CodeReviewResponse {
         logger.info("Starting code review for file: {}", request.fileName)
+        
+        try {
+            FileUtils.checkLanguage(request.fileName, request.language)
+        } catch (e: IllegalArgumentException) {
+            logger.error("Language mismatch: {}", e.message)
+            throw e
+        }
+        
         logger.debug("Reading file contents...")
-        val code = FileUtils.readFile(request.fileName)
+        val code = FileUtils.readFile(request.fileName, request.language)
         
         val prompt = """
             REVIEW AND APPLY VISIBILITY MODIFIERS AND CORRECT SYNTAX ERRORS
@@ -83,8 +92,11 @@ internal class CodeReviewService(
             logger.info("No code changes were suggested")
         }
 
+        val reviewedFileName = "reviewed_" + File(request.fileName).name
+        val reviewedFilePath = File(request.fileName).parent?.let { "$it/$reviewedFileName" } ?: reviewedFileName
+
         return CodeReviewResponse(
-            fileName = request.fileName,
+            reviewedFilePath = if (updatedCode != null) reviewedFilePath else request.fileName,
             suggestions = suggestions,
             updatedCode = updatedCode ?: code
         )

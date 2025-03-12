@@ -26,7 +26,6 @@ A Kotlin-based web service that leverages Google's Gemini AI to perform automate
 │   ├── main/
 │   │   ├── kotlin/         # Kotlin source files
 │   │   └── resources/      # Application resources
-│   └── test/               # Test files
 ├── build.gradle.kts        # Gradle build configuration
 ├── .env.template          # Environment variables template
 └── README.md             # This file

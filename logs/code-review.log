@@ -37,3 +37,373 @@
 2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Public API, accessible from anywhere.
 2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_./src/main/kotlin/utils/LoggerUtils.kt
 2025-03-12 14:29:06.023 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_./src/main/kotlin/utils/LoggerUtils.kt'
+2025-03-12 15:23:17.796 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2025-03-12 15:23:17.926 [main] INFO  ktor.application - Application started in 0.181 seconds.
+2025-03-12 15:23:18.200 [DefaultDispatcher-worker-1] INFO  ktor.application - Responding at http://0.0.0.0:8080
+2025-03-12 15:26:24.007 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:26:24.008 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 15:26:24.020 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 15:26:24.020 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 15:26:27.824 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 15:26:27.836 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 15:26:27.842 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 2 suggestions
+2025-03-12 15:26:27.842 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 2 suggestions
+2025-03-12 15:26:27.843 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:26:27.843 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 15:26:27
+2025-03-12 15:26:27.843 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 2 suggestions
+2025-03-12 15:26:27.843 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 15:26:27.843 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 15:26:27.843 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 15:26:27.843 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 15:26:27.843 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Corrected syntax error and used valid kotlin print statement.
+2025-03-12 15:26:27.844 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 15:26:27.844 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 15:26:27.844 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val result = a + b
+2025-03-12 15:26:27.844 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: This line is syntactically incorrect. Assuming the intent is to add a and b, and assign the result to a variable named result.
+2025-03-12 15:26:27.844 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:26:27.848 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 15:27:12.775 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:27:12.775 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 15:27:12.779 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 15:27:12.779 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 15:27:16.035 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 15:27:16.037 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 15:27:16.038 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 2 suggestions
+2025-03-12 15:27:16.038 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 2 suggestions
+2025-03-12 15:27:16.039 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:27:16.039 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 15:27:16
+2025-03-12 15:27:16.039 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 2 suggestions
+2025-03-12 15:27:16.039 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 15:27:16.039 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 15:27:16.039 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 15:27:16.039 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 15:27:16.039 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Replaced print with println() for valid output. Corrected string literal.
+2025-03-12 15:27:16.040 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 15:27:16.040 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 15:27:16.040 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val result = a + b
+2025-03-12 15:27:16.040 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Changed to a valid assignment using val keyword.
+2025-03-12 15:27:16.040 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:27:16.041 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 15:27:24.126 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:27:24.127 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 15:27:24.128 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 15:27:24.128 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 15:27:26.789 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 15:27:26.791 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 15:27:26.792 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 2 suggestions
+2025-03-12 15:27:26.792 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 2 suggestions
+2025-03-12 15:27:26.792 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:27:26.792 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 15:27:26
+2025-03-12 15:27:26.792 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 2 suggestions
+2025-03-12 15:27:26.792 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 15:27:26.792 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 15:27:26.792 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 15:27:26.793 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 15:27:26.793 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Replaced print statement with a valid println() call.
+2025-03-12 15:27:26.793 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 15:27:26.793 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 15:27:26.793 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val result = 20
+2025-03-12 15:27:26.793 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Corrected syntax error.
+2025-03-12 15:27:26.793 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:27:26.794 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 15:27:47.960 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:27:47.960 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 15:27:47.961 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 15:27:47.961 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 15:27:50.429 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 15:27:50.430 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 15:27:50.431 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 2 suggestions
+2025-03-12 15:27:50.431 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 2 suggestions
+2025-03-12 15:27:50.431 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:27:50.431 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 15:27:50
+2025-03-12 15:27:50.431 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 2 suggestions
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Replaced `print` with `println` and corrected the string literal.
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val sum = a + b
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Fixed syntax error, it looks like that the intention was to assign the sum of `a` and `b` to a variable.
+2025-03-12 15:27:50.432 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:27:50.433 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 15:28:54.687 [eventLoopGroupProxy-4-4] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random.kt
+2025-03-12 15:28:54.688 [eventLoopGroupProxy-4-4] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 15:28:54.689 [eventLoopGroupProxy-4-4] WARN  io.ktor.server.routing.Route - Invalid request received: File /home/surya22/Work/try-stuff/Some-Random.kt not found
+2025-03-12 15:31:02.343 [eventLoopGroupProxy-4-5] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:31:02.344 [eventLoopGroupProxy-4-5] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 15:31:02.345 [eventLoopGroupProxy-4-5] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 15:31:02.345 [eventLoopGroupProxy-4-5] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 15:31:04.102 [eventLoopGroupProxy-4-5] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 15:31:04.103 [eventLoopGroupProxy-4-5] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 15:31:04.104 [eventLoopGroupProxy-4-5] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 2 suggestions
+2025-03-12 15:31:04.105 [eventLoopGroupProxy-4-5] INFO  service.CodeReviewService - Code review completed. Found 2 suggestions
+2025-03-12 15:31:04.105 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:31:04.105 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 15:31:04
+2025-03-12 15:31:04.105 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Found 2 suggestions
+2025-03-12 15:31:04.105 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 15:31:04.105 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 15:31:04.105 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 15:31:04.106 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 15:31:04.106 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Explanation: Corrected print statement
+2025-03-12 15:31:04.106 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 15:31:04.106 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 15:31:04.106 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Suggested change: val result = a + b
+2025-03-12 15:31:04.106 [eventLoopGroupProxy-4-5] INFO  service.report.ReviewReporter - Explanation: Assignment statement corrected and type added
+2025-03-12 15:31:04.106 [eventLoopGroupProxy-4-5] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:31:04.107 [eventLoopGroupProxy-4-5] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 15:35:52.315 [eventLoopGroupProxy-4-7] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:35:52.316 [eventLoopGroupProxy-4-7] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 15:35:52.317 [eventLoopGroupProxy-4-7] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 15:35:52.317 [eventLoopGroupProxy-4-7] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 15:35:55.498 [eventLoopGroupProxy-4-7] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 15:35:55.499 [eventLoopGroupProxy-4-7] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 15:35:55.500 [eventLoopGroupProxy-4-7] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 3 suggestions
+2025-03-12 15:35:55.500 [eventLoopGroupProxy-4-7] INFO  service.CodeReviewService - Code review completed. Found 3 suggestions
+2025-03-12 15:35:55.501 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:35:55.501 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 15:35:55
+2025-03-12 15:35:55.501 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Found 3 suggestions
+2025-03-12 15:35:55.501 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 15:35:55.501 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 15:35:55.501 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 15:35:55.501 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Explanation: Corrected print statement to a valid `println()` call.
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Suggested change: // a + b = 20
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Explanation: This line is syntactically incorrect and doesn't seem to have a purpose. It's commented out.
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Suggestion 3 (Line 7):
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Original code: fun A(){
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Suggested change: fun A(): Nothing {
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] INFO  service.report.ReviewReporter - Explanation: Added return type `Nothing` to function `A` since it always throws an exception.
+2025-03-12 15:35:55.502 [eventLoopGroupProxy-4-7] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:35:55.503 [eventLoopGroupProxy-4-7] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 15:40:00.056 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:40:00.056 [eventLoopGroupProxy-4-1] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 15:40:00.057 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 15:40:00.057 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 15:40:03.265 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 15:40:03.267 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 15:40:03.268 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 5 suggestions
+2025-03-12 15:40:03.268 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Code review completed. Found 5 suggestions
+2025-03-12 15:40:03.268 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:40:03.269 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 15:40:03
+2025-03-12 15:40:03.269 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Found 5 suggestions
+2025-03-12 15:40:03.269 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 15:40:03.269 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 15:40:03.269 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 15:40:03.269 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 15:40:03.269 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Explanation: Replaced `print` statement with valid `println()` call. Corrected the String
+2025-03-12 15:40:03.269 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 15:40:03.269 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 15:40:03.270 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggested change: // a + b = 20
+2025-03-12 15:40:03.270 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Explanation: This line is invalid syntax. It is commented out.
+2025-03-12 15:40:03.270 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggestion 3 (Line 6):
+2025-03-12 15:40:03.270 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Original code: fun A(){
+2025-03-12 15:40:03.270 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggested change: fun A(): Nothing {
+2025-03-12 15:40:03.270 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Explanation: Added return type `Nothing` to the function, as it always throws an exception.
+2025-03-12 15:40:03.270 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggestion 4 (Line 8):
+2025-03-12 15:40:03.271 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Original code: } catch (e:Exception){
+2025-03-12 15:40:03.271 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggested change: } catch (e: Exception){
+2025-03-12 15:40:03.271 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Explanation: Corrected syntax, added a space between colon and Exception
+2025-03-12 15:40:03.271 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggestion 5 (Line 13):
+2025-03-12 15:40:03.271 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Original code: val a = A()
+2025-03-12 15:40:03.271 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Suggested change: val a = try { A() } catch (e: Exception) { null }
+2025-03-12 15:40:03.271 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Explanation: The function `A()` throws an exception. To prevent the program from crashing, it is wrapped in a `try-catch` block. If an exception is caught, `a` is set to `null`.
+2025-03-12 15:40:03.272 [eventLoopGroupProxy-4-1] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 15:40:03.273 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 16:10:08.681 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2025-03-12 16:10:08.735 [main] INFO  ktor.application - Application started in 0.08 seconds.
+2025-03-12 16:10:08.835 [DefaultDispatcher-worker-1] INFO  ktor.application - Responding at http://0.0.0.0:8080
+2025-03-12 16:12:37.321 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2025-03-12 16:12:37.387 [main] INFO  ktor.application - Application started in 0.092 seconds.
+2025-03-12 16:12:37.477 [DefaultDispatcher-worker-1] INFO  ktor.application - Responding at http://0.0.0.0:8080
+2025-03-12 16:12:43.236 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:12:43.237 [eventLoopGroupProxy-4-1] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 16:12:43.238 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 16:12:43.239 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 16:12:45.613 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 16:12:45.619 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 16:12:45.623 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 0 suggestions
+2025-03-12 16:12:45.623 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Code review completed. Found 0 suggestions
+2025-03-12 16:12:45.624 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:12:45.624 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 16:12:45
+2025-03-12 16:12:45.624 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Found 0 suggestions
+2025-03-12 16:12:45.624 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - No suggestions found - code looks good!
+2025-03-12 16:12:45.624 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - No code changes were suggested
+2025-03-12 16:13:07.833 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:13:07.834 [eventLoopGroupProxy-4-1] ERROR service.CodeReviewService - Language mismatch: File extension 'kt' does not match the expected extension for Cpp.
+2025-03-12 16:13:07.834 [eventLoopGroupProxy-4-1] WARN  io.ktor.server.routing.Route - Invalid request received: File extension 'kt' does not match the expected extension for Cpp.
+2025-03-12 16:13:18.174 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:13:18.174 [eventLoopGroupProxy-4-1] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 16:13:18.174 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 16:13:18.174 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 16:13:20.760 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 16:13:20.761 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 16:13:20.762 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 0 suggestions
+2025-03-12 16:13:20.762 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Code review completed. Found 0 suggestions
+2025-03-12 16:13:20.762 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:13:20.762 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 16:13:20
+2025-03-12 16:13:20.762 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Found 0 suggestions
+2025-03-12 16:13:20.762 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - No suggestions found - code looks good!
+2025-03-12 16:13:20.762 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - No code changes were suggested
+2025-03-12 16:13:27.508 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:13:27.508 [eventLoopGroupProxy-4-1] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 16:13:27.509 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 16:13:27.509 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 16:13:29.682 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 16:13:29.684 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 16:13:29.685 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 0 suggestions
+2025-03-12 16:13:29.685 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Code review completed. Found 0 suggestions
+2025-03-12 16:13:29.685 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:13:29.686 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 16:13:29
+2025-03-12 16:13:29.686 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - Found 0 suggestions
+2025-03-12 16:13:29.686 [eventLoopGroupProxy-4-1] INFO  service.report.ReviewReporter - No suggestions found - code looks good!
+2025-03-12 16:13:29.686 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - No code changes were suggested
+2025-03-12 16:15:28.585 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2025-03-12 16:15:28.649 [main] INFO  ktor.application - Application started in 0.088 seconds.
+2025-03-12 16:15:28.728 [DefaultDispatcher-worker-1] INFO  ktor.application - Responding at http://0.0.0.0:8080
+2025-03-12 16:15:34.275 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:15:34.277 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 16:15:34.284 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 16:15:34.285 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 16:15:37.133 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 16:15:37.140 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 16:15:37.144 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 5 suggestions
+2025-03-12 16:15:37.144 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 5 suggestions
+2025-03-12 16:15:37.144 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:15:37.144 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 16:15:37
+2025-03-12 16:15:37.144 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 5 suggestions
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Corrected syntax error; replaced `print` with `println` and used valid string quotes.
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: // a + b = 20
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: This line is invalid Kotlin syntax.  It's not doing anything. I'm commenting it out.  If the intent was to assign `20` to a variable or sum of variables, it needs to be rewritten to valid Kotlin.
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 3 (Line 6):
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: fun A(){
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: fun A(): Unit {
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added explicit `Unit` return type.
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 4 (Line 8):
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: } catch (e:Exception){
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: } catch (e: Exception){
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added space between colon and Exception.
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 5 (Line 12):
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: val a = A()
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val a = A()
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: No change needed.
+2025-03-12 16:15:37.145 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:15:37.147 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 16:15:44.525 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:15:44.526 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 16:15:44.527 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 16:15:44.527 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 16:15:48.335 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 16:15:48.337 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 16:15:48.339 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 4 suggestions
+2025-03-12 16:15:48.339 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 4 suggestions
+2025-03-12 16:15:48.339 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:15:48.339 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 16:15:48
+2025-03-12 16:15:48.339 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 4 suggestions
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Corrected print statement to a valid println call.
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: // a + b = 20
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: This line is not valid Kotlin. It attempts to assign the value 20 to an expression.  Commenting it out, as it's unclear what the intended behavior is.
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 3 (Line 6):
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: fun A(){
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: fun A(): Nothing {
+2025-03-12 16:15:48.340 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added return type `Nothing` because the function always throws an exception.
+2025-03-12 16:15:48.341 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 4 (Line 12):
+2025-03-12 16:15:48.341 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: val a = A()
+2025-03-12 16:15:48.341 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val a = try { A() } catch (e: Exception) { e }
+2025-03-12 16:15:48.341 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: The original code would crash if `A()` throws an exception. This change allows it to continue, capturing the exception in variable `a`.
+2025-03-12 16:15:48.341 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:15:48.341 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 16:15:54.990 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:15:54.990 [eventLoopGroupProxy-4-2] ERROR service.CodeReviewService - Language mismatch: File extension 'kt' does not match the expected extension for Cpp.
+2025-03-12 16:15:54.990 [eventLoopGroupProxy-4-2] WARN  io.ktor.server.routing.Route - Invalid request received: File extension 'kt' does not match the expected extension for Cpp.
+2025-03-12 16:26:16.794 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2025-03-12 16:26:16.859 [main] INFO  ktor.application - Application started in 0.089 seconds.
+2025-03-12 16:26:16.947 [DefaultDispatcher-worker-1] INFO  ktor.application - Responding at http://0.0.0.0:8080
+2025-03-12 16:27:32.531 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:27:32.533 [eventLoopGroupProxy-4-2] ERROR service.CodeReviewService - Language mismatch: File extension 'kt' does not match the expected extension for Cpp.
+2025-03-12 16:27:32.533 [eventLoopGroupProxy-4-2] WARN  io.ktor.server.routing.Route - Invalid request received: File extension 'kt' does not match the expected extension for Cpp.
+2025-03-12 16:27:41.976 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:27:41.976 [eventLoopGroupProxy-4-2] ERROR service.CodeReviewService - Language mismatch: Unsupported language: Casdas
+2025-03-12 16:27:41.976 [eventLoopGroupProxy-4-2] WARN  io.ktor.server.routing.Route - Invalid request received: Unsupported language: Casdas
+2025-03-12 16:27:51.841 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:27:51.841 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 16:27:51.846 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 16:27:51.847 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 16:27:55.570 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 16:27:55.577 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 16:27:55.580 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 3 suggestions
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 3 suggestions
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 16:27:55
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 3 suggestions
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Correct syntax error: replace `print` with `println` and use correct string formatting.
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val sum = a + b
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Correct syntax error: `a` and `b` are not defined. This line also tries to assign a value, fix by declaring variable. Also assuming a and b are integers since their values weren't specified.
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 3 (Line 7):
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: fun A(){
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: fun A(): Nothing {
+2025-03-12 16:27:55.581 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Add return type to function that always throws an exception.
+2025-03-12 16:27:55.582 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:27:55.583 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 16:31:47.474 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2025-03-12 16:31:47.525 [main] INFO  ktor.application - Application started in 0.072 seconds.
+2025-03-12 16:31:47.597 [DefaultDispatcher-worker-2] INFO  ktor.application - Responding at http://0.0.0.0:8080
+2025-03-12 16:32:13.612 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:32:13.613 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 16:32:13.618 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 16:32:13.619 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 16:32:17.938 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 16:32:17.944 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 16:32:17.948 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 6 suggestions
+2025-03-12 16:32:17.948 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 6 suggestions
+2025-03-12 16:32:17.948 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 16:32:17
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 6 suggestions
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Corrected syntax error. Replaced `print` with `println` and enclosed the string in parentheses.
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: // a + b = 20
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: This line is invalid syntax. It is not a valid assignment or expression. Commenting out to remove the error.  Without further context, it's impossible to determine the correct intent, so the safest action is to comment it out.
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 3 (Line 6):
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: fun A(){
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: fun A(): Nothing {
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: The function `A` always throws an exception, so its return type should be `Nothing`.
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 4 (Line 8):
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: TODO()
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: TODO("Not yet implemented")
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added a message to the TODO call to better indicate the missing implementation.
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 5 (Line 8):
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: } catch (e:Exception){
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: } catch (e: Exception){
+2025-03-12 16:32:17.949 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added a space for better readability.
+2025-03-12 16:32:17.950 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 6 (Line 12):
+2025-03-12 16:32:17.950 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: val a = A()
+2025-03-12 16:32:17.950 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val a: Nothing = A()
+2025-03-12 16:32:17.950 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added the type `Nothing` for variable `a` to match the return type of function `A`.
+2025-03-12 16:32:17.950 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 16:32:17.951 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'

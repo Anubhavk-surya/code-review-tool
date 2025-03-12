@@ -3,8 +3,8 @@ package utils
 import java.io.File
 import java.nio.file.Paths
 
-object FileUtils {
-    fun readFile(fileName: String): String {
+internal object FileUtils {
+    internal fun readFile(fileName: String): String {
         val file = File(fileName)
         if (!file.exists()) {
             throw IllegalArgumentException("File $fileName not found")
@@ -12,7 +12,7 @@ object FileUtils {
         return file.readText()
     }
 
-    fun writeUpdatedFile(originalFileName: String, updatedContent: String) {
+    internal fun writeUpdatedFile(originalFileName: String, updatedContent: String) {
         val currentDir = Paths.get("").toAbsolutePath().toString()
         val fileName = File(originalFileName).name  // Extract just the filename without path
         val updatedFileName = "reviewed_${fileName}"

@@ -11,7 +11,7 @@ import model.CodeReviewRequest
 import service.CodeReviewService
 import org.koin.ktor.ext.inject
 
-fun Route.codeReviewRoute() {
+internal fun Route.codeReviewRoute() {
     val codeReviewService by inject<CodeReviewService>()
     
     route("/api/review") {
@@ -19,13 +19,22 @@ fun Route.codeReviewRoute() {
             try {
                 val request = call.receive<CodeReviewRequest>()
                 val response = codeReviewService.reviewCode(request)
-                call.respond(HttpStatusCode.OK, response)
+                call.respond(
+                    status = HttpStatusCode.OK,
+                    message = response
+                )
             } catch (e: IllegalArgumentException) {
-                call.respond(HttpStatusCode.BadRequest, e.message ?: "Invalid request")
+                call.respond(
+                    status = HttpStatusCode.BadRequest,
+                    message = e.message ?: "Invalid request"
+                )
             } catch (e: Exception) {
                 println("Error during code review: ${e.message}")
                 e.printStackTrace()
-                call.respond(HttpStatusCode.InternalServerError, "An error occurred while processing your request")
+                call.respond(
+                    status = HttpStatusCode.InternalServerError,
+                    message = "An error occurred while processing your request"
+                )
             }
         }
     }

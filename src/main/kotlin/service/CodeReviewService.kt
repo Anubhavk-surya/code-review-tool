@@ -8,7 +8,7 @@ import service.gemini.GeminiResponseParser
 import service.report.ReviewReporter
 import io.ktor.client.HttpClient
 
-class CodeReviewService(
+internal class CodeReviewService(
     httpClient: HttpClient,
     apiKey: String,
     baseUrl: String,

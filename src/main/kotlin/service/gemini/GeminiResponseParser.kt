@@ -6,8 +6,8 @@ import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonPrimitive
 
-object GeminiResponseParser {
-    fun parseResponse(response: String): Pair<List<CodeSuggestion>, String?> {
+internal object GeminiResponseParser {
+    internal fun parseResponse(response: String): Pair<List<CodeSuggestion>, String?> {
         try {
             val jsonResponse = Json.parseToJsonElement(response)
             val text = jsonResponse.jsonObject["candidates"]?.jsonArray?.firstOrNull()

@@ -20,7 +20,7 @@ fun main() {
     }.start(wait = true)
 }
 
-fun Application.configureServer() {
+internal fun Application.configureServer() {
     install(ContentNegotiation) {
         json()
     }

@@ -3,14 +3,14 @@ package model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CodeReviewResponse(
+internal data class CodeReviewResponse(
     val fileName: String,
     val suggestions: List<CodeSuggestion>,
     val updatedCode: String
 )
 
 @Serializable
-data class CodeSuggestion(
+internal data class CodeSuggestion(
     val lineNumber: Int,
     val originalCode: String,
     val suggestion: String,

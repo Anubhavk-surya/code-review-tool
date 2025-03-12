@@ -6,7 +6,7 @@ import org.koin.dsl.module
 import service.CodeReviewService
 import utils.EnvUtils
 
-val appModule = module {
+internal val appModule = module {
     single { HttpClient(CIO) }
 
     single {

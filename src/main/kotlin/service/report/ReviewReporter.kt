@@ -4,8 +4,8 @@ import model.CodeSuggestion
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-object ReviewReporter {
-    fun printReviewSummary(fileName: String, suggestions: List<CodeSuggestion>) {
+internal object ReviewReporter {
+    internal fun printReviewSummary(fileName: String, suggestions: List<CodeSuggestion>) {
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         
         println("\nCode Review Summary")
@@ -33,7 +33,7 @@ object ReviewReporter {
         }
     }
 
-    fun appendReviewComments(code: String, suggestions: List<CodeSuggestion>): String {
+    internal fun appendReviewComments(code: String, suggestions: List<CodeSuggestion>): String {
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         val reviewComments = StringBuilder(code)
         

@@ -11,14 +11,14 @@ import kotlinx.serialization.json.putJsonArray
 import kotlinx.serialization.json.addJsonObject
 import kotlinx.serialization.json.put
 
-class GeminiApiClient(
+internal class GeminiApiClient(
     private val httpClient: HttpClient,
     private val apiKey: String,
     private val baseUrl: String
 ) {
-    suspend fun generateContent(prompt: String, model: String): String {
+    internal suspend fun generateContent(prompt: String, model: String): String {
         try {
-            val response = httpClient.post("$baseUrl$model:generateContent?key=$apiKey") {
+            val response = httpClient.post(urlString = "$baseUrl$model:generateContent?key=$apiKey") {
                 contentType(ContentType.Application.Json)
                 setBody(buildJsonRequest(prompt))
             }

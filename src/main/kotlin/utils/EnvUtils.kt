@@ -11,4 +11,4 @@ internal object EnvUtils {
 
     internal fun requireEnvVariable(key: String): String = getEnvVariable(key)
         ?: throw IllegalStateException("Required environment variable $key is not set")
-} 
+}

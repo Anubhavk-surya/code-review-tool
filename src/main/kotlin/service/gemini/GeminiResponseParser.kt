@@ -22,7 +22,10 @@ internal object GeminiResponseParser {
             
             if (sections.isNotEmpty()) {
                 val suggestionText = sections[0]
-                val suggestionBlocks = suggestionText.split("---").filter { it.contains("Line:") }
+                // Split by "SUGGESTIONS:" first to get only the suggestions section
+                val suggestionsSection = suggestionText.split("SUGGESTIONS:").getOrNull(1)?.trim() ?: ""
+                // Split by "Line:" but keep the "Line:" prefix
+                val suggestionBlocks = suggestionsSection.split("\nLine:").drop(1).map { "Line:$it" }
                 
                 for (block in suggestionBlocks) {
                     val lines = block.trim().split("\n")
@@ -66,4 +69,4 @@ internal object GeminiResponseParser {
             explanation = map["explanation"] ?: ""
         )
     }
-} 
+}

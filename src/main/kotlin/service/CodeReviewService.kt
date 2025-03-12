@@ -22,7 +22,7 @@ internal class CodeReviewService(
         val code = FileUtils.readFile(request.fileName)
         
         val prompt = """
-            REVIEW AND APPLY VISIBILITY MODIFIERS
+            REVIEW AND APPLY VISIBILITY MODIFIERS AND CORRECT SYNTAX ERRORS
 
             Rules:
             private → Only for:
@@ -41,6 +41,13 @@ internal class CodeReviewService(
             Imports, package declarations
             Lambdas, catch blocks, route handlers
             Public API properties
+            
+            Error Correction Rules:
+            * Correct any syntax errors found in the code.
+            * Ensure that all code is valid Kotlin.
+            * If a print statement is encountered, replace it with a valid `println()` call.
+            * If a function is defined without a return type, and it returns a value, add the return type.
+            
             Format:
             SUGGESTIONS:
             Line: <number>
@@ -49,7 +56,7 @@ internal class CodeReviewService(
             Explanation: Restricted to module scope
             
             UPDATED_CODE:
-            // Code with applied visibility modifiers  
+            // Code with applied visibility modifiers and corrected syntax errors
             <updated code>  
             Review this:
             ```${request.language.lowercase()}

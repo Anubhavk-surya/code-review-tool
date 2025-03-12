@@ -45,4 +45,4 @@ internal class GeminiApiClient(
 
         return request.toString()
     }
-} 
+}

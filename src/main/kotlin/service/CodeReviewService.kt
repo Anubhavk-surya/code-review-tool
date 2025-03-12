@@ -7,18 +7,19 @@ import service.gemini.GeminiApiClient
 import service.gemini.GeminiResponseParser
 import service.report.ReviewReporter
 import io.ktor.client.HttpClient
+import utils.LoggerUtils
 
 internal class CodeReviewService(
     httpClient: HttpClient,
     apiKey: String,
     baseUrl: String,
-    private val defaultModel: String
 ) {
+    private val logger = LoggerUtils.logger<CodeReviewService>()
     private val geminiClient = GeminiApiClient(httpClient, apiKey, baseUrl)
 
     suspend fun reviewCode(request: CodeReviewRequest): CodeReviewResponse {
-        println("\n=== Code Review for ${request.fileName} ===")
-        println("Reading file...")
+        logger.info("Starting code review for file: {}", request.fileName)
+        logger.debug("Reading file contents...")
         val code = FileUtils.readFile(request.fileName)
         
         val prompt = """
@@ -65,22 +66,22 @@ internal class CodeReviewService(
         """.trimIndent()
 
         val selectedModel = request.model
-        println("Analyzing code with Gemini AI ($selectedModel)...")
+        logger.info("Analyzing code with Gemini AI model: {}", selectedModel)
         val response = geminiClient.generateContent(prompt, selectedModel)
         
         val (suggestions, updatedCode) = GeminiResponseParser.parseResponse(response)
         
+        logger.info("Code review completed. Found {} suggestions", suggestions.size)
         ReviewReporter.printReviewSummary(request.fileName, suggestions)
         
         if (updatedCode != null) {
-            println("\nWriting updated code to reviewed_${request.fileName}")
+            logger.debug("Writing updated code to reviewed_{}", request.fileName)
             val codeWithComments = ReviewReporter.appendReviewComments(updatedCode, suggestions)
             FileUtils.writeUpdatedFile(request.fileName, codeWithComments)
-            println("Review complete! You can find the updated code in 'reviewed_${request.fileName}'")
+            logger.info("Review complete! Updated code written to 'reviewed_{}'", request.fileName)
         } else {
-            println("\nNo code changes were suggested.")
+            logger.info("No code changes were suggested")
         }
-        println("=====================================")
 
         return CodeReviewResponse(
             fileName = request.fileName,

@@ -5,10 +5,14 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonPrimitive
+import utils.LoggerUtils
 
 internal object GeminiResponseParser {
+    private val logger = LoggerUtils.logger<GeminiResponseParser>()
+
     internal fun parseResponse(response: String): Pair<List<CodeSuggestion>, String?> {
         try {
+            logger.debug("Parsing Gemini API response")
             val jsonResponse = Json.parseToJsonElement(response)
             val text = jsonResponse.jsonObject["candidates"]?.jsonArray?.firstOrNull()
                 ?.jsonObject?.get("content")?.jsonObject?.get("parts")?.jsonArray?.firstOrNull()
@@ -22,9 +26,7 @@ internal object GeminiResponseParser {
             
             if (sections.isNotEmpty()) {
                 val suggestionText = sections[0]
-                // Split by "SUGGESTIONS:" first to get only the suggestions section
                 val suggestionsSection = suggestionText.split("SUGGESTIONS:").getOrNull(1)?.trim() ?: ""
-                // Split by "Line:" but keep the "Line:" prefix
                 val suggestionBlocks = suggestionsSection.split("\nLine:").drop(1).map { "Line:$it" }
                 
                 for (block in suggestionBlocks) {
@@ -47,16 +49,31 @@ internal object GeminiResponseParser {
                 
                 if (sections.size > 1) {
                     updatedCode = sections[1].trim()
-                        .removePrefix("```${sections[1].trim().takeWhile { !it.isWhitespace() }}")
+                        // First remove the opening code block with language identifier if present
+                        .let { code ->
+                            if (code.startsWith("```")) {
+                                // Find the first newline after the opening ```
+                                val firstNewline = code.indexOf('\n')
+                                if (firstNewline != -1) {
+                                    code.substring(firstNewline).trim()
+                                } else {
+                                    code
+                                }
+                            } else {
+                                code
+                            }
+                        }
+                        // Then remove any remaining ``` markers
                         .removePrefix("```")
                         .removeSuffix("```")
                         .trim()
                 }
             }
 
+            logger.debug("Successfully parsed response. Found {} suggestions", suggestions.size)
             return Pair(suggestions, updatedCode)
         } catch (e: Exception) {
-            println("Error parsing Gemini response: ${e.message}")
+            logger.error("Error parsing Gemini response: {}", e.message, e)
             throw e
         }
     }

@@ -1,35 +1,31 @@
 package service.report
 
 import model.CodeSuggestion
+import utils.LoggerUtils
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 internal object ReviewReporter {
+    private val logger = LoggerUtils.logger<ReviewReporter>()
+
     internal fun printReviewSummary(fileName: String, suggestions: List<CodeSuggestion>) {
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         
-        println("\nCode Review Summary")
-        println("==================")
-        println("File: $fileName")
-        println("Review Date: $timestamp")
-        println("Number of suggestions: ${suggestions.size}")
+        logger.info("Code Review Summary for file: {}", fileName)
+        logger.info("Review Date: {}", timestamp)
+        logger.info("Found {} suggestions", suggestions.size)
         
         if (suggestions.isEmpty()) {
-            println("\nNo suggestions found - code looks good!")
+            logger.info("No suggestions found - code looks good!")
             return
         }
 
-        println("\nDetailed Suggestions:")
-        println("-------------------")
+        logger.info("Detailed Suggestions:")
         suggestions.forEachIndexed { index, suggestion ->
-            println("\n${index + 1}. Line ${suggestion.lineNumber}:")
-            println("   Original code:")
-            println("      ${suggestion.originalCode}")
-            println("   Suggested change:")
-            println("      ${suggestion.suggestion}")
-            println("   Explanation:")
-            println("      ${suggestion.explanation}")
-            println("   ----------------------------------------")
+            logger.info("Suggestion {} (Line {}):", index + 1, suggestion.lineNumber)
+            logger.info("Original code: {}", suggestion.originalCode)
+            logger.info("Suggested change: {}", suggestion.suggestion)
+            logger.info("Explanation: {}", suggestion.explanation)
         }
     }
 

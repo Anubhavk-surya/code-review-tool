@@ -12,13 +12,11 @@ internal val appModule = module {
     single {
         val apiKey = EnvUtils.requireEnvVariable("GEMINI_API_KEY")
         val baseUrl = "https://generativelanguage.googleapis.com/v1beta/models/"
-        val defaultModel = "gemini-2.0-flash"
 
         CodeReviewService(
             httpClient = get(),
             apiKey = apiKey,
             baseUrl = baseUrl,
-            defaultModel = defaultModel
         )
     }
 } 

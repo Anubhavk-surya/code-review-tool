@@ -1,0 +1,39 @@
+2025-03-12 14:20:25.924 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2025-03-12 14:20:25.984 [main] INFO  ktor.application - Application started in 0.088 seconds.
+2025-03-12 14:20:26.071 [DefaultDispatcher-worker-2] INFO  ktor.application - Responding at http://0.0.0.0:8080
+2025-03-12 14:21:33.770 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Starting code review for file: ./src/main/kotlin/utils/LoggerUtils.kt
+2025-03-12 14:21:33.771 [eventLoopGroupProxy-4-1] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 14:21:33.777 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 14:21:33.778 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 14:21:37.375 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 14:21:37.384 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 14:21:37.390 [eventLoopGroupProxy-4-1] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 1 suggestions
+2025-03-12 14:21:37.390 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Code review completed. Found 1 suggestions
+2025-03-12 14:21:37.394 [eventLoopGroupProxy-4-1] DEBUG service.CodeReviewService - Writing updated code to reviewed_./src/main/kotlin/utils/LoggerUtils.kt
+2025-03-12 14:21:37.395 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_./src/main/kotlin/utils/LoggerUtils.kt'
+2025-03-12 14:24:13.397 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: ./src/main/kotlin/utils/LogerUtils.kt
+2025-03-12 14:24:13.398 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 14:28:31.019 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2025-03-12 14:28:31.097 [main] INFO  ktor.application - Application started in 0.103 seconds.
+2025-03-12 14:28:31.203 [DefaultDispatcher-worker-1] INFO  ktor.application - Responding at http://0.0.0.0:8080
+2025-03-12 14:28:46.907 [eventLoopGroupProxy-4-1] INFO  service.CodeReviewService - Starting code review for file: ./src/main/kotlin/utils/LogerUtils.kt
+2025-03-12 14:28:46.908 [eventLoopGroupProxy-4-1] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 14:28:46.909 [eventLoopGroupProxy-4-1] WARN  io.ktor.server.routing.Route - Invalid request received: File ./src/main/kotlin/utils/LogerUtils.kt not found
+2025-03-12 14:29:02.756 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: ./src/main/kotlin/utils/LoggerUtils.kt
+2025-03-12 14:29:02.756 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 14:29:02.762 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 14:29:02.762 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 14:29:06.007 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 14:29:06.015 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 14:29:06.019 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 1 suggestions
+2025-03-12 14:29:06.019 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 1 suggestions
+2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: ./src/main/kotlin/utils/LoggerUtils.kt
+2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 14:29:06
+2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 1 suggestions
+2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 17):
+2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: internal fun logger(name: String): Logger = LoggerFactory.getLogger(name)
+2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: fun logger(name: String): Logger = LoggerFactory.getLogger(name)
+2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Public API, accessible from anywhere.
+2025-03-12 14:29:06.020 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_./src/main/kotlin/utils/LoggerUtils.kt
+2025-03-12 14:29:06.023 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_./src/main/kotlin/utils/LoggerUtils.kt'

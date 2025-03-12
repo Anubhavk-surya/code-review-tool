@@ -75,6 +75,10 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:2.0.0")
     implementation("io.ktor:ktor-client-cio:2.0.0")
     implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
+    
+    // Logging dependencies
+    implementation("ch.qos.logback:logback-classic:1.4.14")
+    implementation("org.slf4j:slf4j-api:2.0.11")
 
     testImplementation(kotlin("test"))
     testImplementation("io.ktor:ktor-server-test-host:2.3.7")

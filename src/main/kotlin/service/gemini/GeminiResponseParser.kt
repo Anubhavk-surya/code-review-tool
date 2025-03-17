@@ -49,10 +49,8 @@ internal object GeminiResponseParser {
                 
                 if (sections.size > 1) {
                     updatedCode = sections[1].trim()
-                        // First remove the opening code block with language identifier if present
                         .let { code ->
                             if (code.startsWith("```")) {
-                                // Find the first newline after the opening ```
                                 val firstNewline = code.indexOf('\n')
                                 if (firstNewline != -1) {
                                     code.substring(firstNewline).trim()
@@ -63,7 +61,6 @@ internal object GeminiResponseParser {
                                 code
                             }
                         }
-                        // Then remove any remaining ``` markers
                         .removePrefix("```")
                         .removeSuffix("```")
                         .trim()

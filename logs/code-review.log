@@ -407,3 +407,70 @@
 2025-03-12 16:32:17.950 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added the type `Nothing` for variable `a` to match the return type of function `A`.
 2025-03-12 16:32:17.950 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
 2025-03-12 16:32:17.951 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 17:09:57.320 [main] INFO  ktor.application - Autoreload is disabled because the development mode is off.
+2025-03-12 17:09:57.373 [main] INFO  ktor.application - Application started in 0.074 seconds.
+2025-03-12 17:09:57.459 [DefaultDispatcher-worker-1] INFO  ktor.application - Responding at http://0.0.0.0:8080
+2025-03-12 17:10:03.014 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 17:10:03.015 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 17:10:03.021 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 17:10:03.021 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 17:10:07.584 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 17:10:07.592 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 17:10:07.597 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 5 suggestions
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 5 suggestions
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 17:10:07
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 5 suggestions
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Corrected print statement to println() with appropriate string literal.
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 17:10:07.598 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val sum = a + b
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Syntax error. Assignment must be done to a variable. Assuming intention to declare a sum of a and b as 20. Changed to val sum = a + b. However, 'a' and 'b' are not defined in this scope. This will still result in a compile time error, but without more context, this is the closest correction.
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 3 (Line 6):
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: fun A(){
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: fun A(): Nothing {
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added return type Nothing since the function always throws an exception.
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 4 (Line 9):
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: catch (e:Exception){
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: catch (e: Exception){
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added a space before Exception for readability
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 5 (Line 13):
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: val a = A()
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val instanceA = A()
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Changed variable name to avoid confusion with variable 'a' used in line 3.
+2025-03-12 17:10:07.599 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 17:10:07.601 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
+2025-03-12 17:10:45.883 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Starting code review for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 17:10:45.883 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Reading file contents...
+2025-03-12 17:10:45.885 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Analyzing code with Gemini AI model: gemini-2.0-flash
+2025-03-12 17:10:45.886 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Making request to Gemini API with model: gemini-2.0-flash
+2025-03-12 17:10:49.784 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiApiClient - Successfully received response from Gemini API
+2025-03-12 17:10:49.786 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Parsing Gemini API response
+2025-03-12 17:10:49.787 [eventLoopGroupProxy-4-2] DEBUG service.gemini.GeminiResponseParser - Successfully parsed response. Found 4 suggestions
+2025-03-12 17:10:49.787 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Code review completed. Found 4 suggestions
+2025-03-12 17:10:49.787 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Code Review Summary for file: /home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Review Date: 2025-03-12 17:10:49
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Found 4 suggestions
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Detailed Suggestions:
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 1 (Line 2):
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: print ""some random Code""
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: println("some random Code")
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Replaced `print` with `println` and corrected string literal.
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 2 (Line 3):
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: a + b = 20
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val sum = a + b
+2025-03-12 17:10:49.788 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Corrected syntax, assuming the intent was to declare a sum. It's unclear what `a` and `b` are, but I'm not adding declarations as that would fundamentally change the code. Instead I just focused on fixing the syntax error.
+2025-03-12 17:10:49.789 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 3 (Line 6):
+2025-03-12 17:10:49.789 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: fun A(){
+2025-03-12 17:10:49.789 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: fun A(): Nothing {
+2025-03-12 17:10:49.789 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: Added return type Nothing, as TODO() always throws an exception.
+2025-03-12 17:10:49.789 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggestion 4 (Line 12):
+2025-03-12 17:10:49.789 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Original code: val a = A()
+2025-03-12 17:10:49.789 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Suggested change: val a = try { A() } catch (e: Exception) { null }
+2025-03-12 17:10:49.789 [eventLoopGroupProxy-4-2] INFO  service.report.ReviewReporter - Explanation: The function `A()` always throws an exception, so this line will always cause an exception. Wrap the function call in a try-catch block to prevent the program from crashing. The `A()` function will return Nothing, so we must change the return type to `Nothing?` to return null in the catch block.
+2025-03-12 17:10:49.789 [eventLoopGroupProxy-4-2] DEBUG service.CodeReviewService - Writing updated code to reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt
+2025-03-12 17:10:49.790 [eventLoopGroupProxy-4-2] INFO  service.CodeReviewService - Review complete! Updated code written to 'reviewed_/home/surya22/Work/try-stuff/Some-Random-Code.kt'
